@@ -25,6 +25,38 @@ jobRoleField.addEventListener('change', (e) => {
 
 // Step 5: 
 
+let disableColor = document.getElementById('color');
+disableColor.style.display = 'none';
+
+let shirtDesignSelect = document.getElementById('design');
+
+let shirtColorOptions = document.querySelectorAll('#color option');
+
+console.log(shirtDesignSelect);
+shirtDesignSelect.addEventListener('change', (e) => {
+    disableColor.style.display = 'block';
+    if ( e.target.value == 'js puns') {
+        //console.log(shirtColorOptions[1])
+        shirtColorOptions[1].selected = 'true';
+        for ( let i = 1; i < 7; i++ ) {
+            if ( i < 4 ) {
+                shirtColorOptions[i].style.display = 'block';
+            } else {
+                shirtColorOptions[i].style.display = 'none';
+            }
+        }
+    } else if ( e.target.value == 'heart js' ) {
+        //console.log(shirtColorOptions[4])
+        shirtColorOptions[4].selected = 'true';
+        for ( let i = 1; i < 7; i++ ) {
+            if ( i < 4 ) {
+                shirtColorOptions[i].style.display = 'none';
+            } else {
+                shirtColorOptions[i].style.display = 'block';
+            }
+        }
+    }
+})
 
 
 
