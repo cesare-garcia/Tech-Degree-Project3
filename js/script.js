@@ -67,6 +67,8 @@ let activitiesCheckboxes = document.querySelectorAll('.activities input');
 // console.log(activitiesFieldSet);
 // console.log(activitiesCheckboxes);
 
+// Variable for Step 8 established here: 
+
 activitiesFieldSet.addEventListener('change', (e) => {
 
     // Testing Variables:
@@ -119,4 +121,95 @@ paymentSelector.addEventListener('change', (e) => {
 
 // Step 8: Form validation
 
+let formElement = document.querySelector('form');
 
+// name already has a variable through nameField at the top of the program
+// activities variable already established
+
+let email = document.querySelector('#email');
+
+function nameValidator() {
+    let nameValue = nameField.value;
+    let nameTest = /^[a-zA-z]+ ?[a=zA-z]*? ?[a-zA-z]*?$/.test(nameValue);
+
+    return nameTest
+}
+
+function emailValidator() {
+    let emailValue = email.value;
+    let emailTest = /^[^@]+@[^@.]+\.[a-z]+$/i.test(emailValue);
+
+    return emailTest
+}
+
+function activitiesValidator() {
+    let activitiesValue = totalActivities > 0;
+    
+    return activitiesValue
+}
+
+function cardNumberValidator() {
+    let ccNumbValue = document.getElementById('cc-num').value;
+    let ccTest = /^[0-9]{13,16}$/.test(ccNumbValue);
+    return ccTest
+}
+
+function zipcodeValidator() {
+    let zipCodeValue = document.getElementById('zip').value;
+    let zipTest = /^[0-9]{5}$/.test(zipCodeValue);
+    return zipTest
+}
+
+function cvvValidator() {
+    let ccvValue = document.getElementById('cvv').value;
+    let ccvTest = /^[0-9]{3}$/.test(ccvValue);
+    return ccvTest
+}
+
+let totalActivities = 0;
+
+formElement.addEventListener('submit', (e) => {
+
+    // Must set totalActivities to 0 before running the loop, so that the counter doesn't carry over to a second or third submission
+    // The loop must count from zero every single time the form is submitted.
+
+    totalActivities = 0;
+    for ( let i = 0; i < activitiesCheckboxes.length; i++ ) {
+        if ( activitiesCheckboxes[i].checked ) {
+            totalActivities += 1;
+            // testing tool -> console.log(totalActivities);
+        }
+    }
+
+    if ( !nameValidator() ) {
+        e.preventDefault();
+        console.log('Name Validator does not approve');
+    }
+    if ( !emailValidator() ) {
+        e.preventDefault();
+        console.log('Email validator does not approve');
+    }
+    if ( !activitiesValidator() ) {
+        e.preventDefault();
+        console.log('Activities validator does not approve');
+        
+    }
+    if ( paymentOptions[1].selected ) {
+        //console.log('Credit Card fires baby!') -> testing phrase
+
+        if ( !cardNumberValidator() ) {
+            e.preventDefault();
+            console.log('Card Number Validator does not approve');
+        }
+        if ( !zipcodeValidator() ) {
+            e.preventDefault();
+            console.log('Zip Code Validator does not approve');
+        }
+        if ( !cvvValidator() ) {
+            e.preventDefault();
+            console.log('CVV Validator does not approve');
+        }
+    } 
+});
+
+// Step 9: Accessibility 
