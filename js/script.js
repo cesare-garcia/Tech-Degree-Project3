@@ -58,6 +58,33 @@ shirtDesignSelect.addEventListener('change', (e) => {
     }
 })
 
+// Step 6: Register for Activities
+
+let activitiesFieldSet = document.querySelector('.activities');
+let activitiesCheckboxes = document.querySelectorAll('.activities input');
+
+// Testing Variables:
+// console.log(activitiesFieldSet);
+// console.log(activitiesCheckboxes);
+
+activitiesFieldSet.addEventListener('change', (e) => {
+
+    // Testing Variables:
+    //let clickedBox = e.target;
+    //let clickedCost = clickedBox.getAttribute('data-cost');
+    // console.log(clickedBox);
+    // console.log(clickedCost);
+
+    let totalCost = 0;
+    let totalCostText = document.getElementById('activities-cost');
+
+    for ( let i = 0; i < activitiesCheckboxes.length; i++ ) {
+        if ( activitiesCheckboxes[i].checked ) {
+            totalCost += parseInt(`${activitiesCheckboxes[i].getAttribute('data-cost')}`);
+        }
+    }
+    totalCostText.innerHTML = `Total: $${totalCost}`;
+})
 
 
 
