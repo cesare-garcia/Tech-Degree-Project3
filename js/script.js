@@ -86,6 +86,37 @@ activitiesFieldSet.addEventListener('change', (e) => {
     totalCostText.innerHTML = `Total: $${totalCost}`;
 })
 
+// Step 7: Payment Info Section
 
+let creditCardField = document.getElementById('credit-card');
+
+let paypalField = document.getElementById('paypal');
+paypalField.style.display = 'none';
+
+let bitcoinField = document.getElementById('bitcoin');
+bitcoinField.style.display = 'none';
+
+let paymentOptions = document.querySelectorAll('#payment option');
+paymentOptions[1].selected = 'true';
+
+let paymentSelector = document.getElementById('payment');
+
+paymentSelector.addEventListener('change', (e) => {
+    if ( e.target.value == 'paypal' ) {
+        paypalField.style.display = 'block';
+        bitcoinField.style.display = 'none';
+        creditCardField.style.display = 'none';
+    } else if ( e.target.value == 'bitcoin' ) {
+        bitcoinField.style.display = 'block';
+        paypalField.style.display = 'none';
+        creditCardField.style.display = 'none';
+    } else if ( e.target.value == 'credit-card' ) {
+        creditCardField.style.display = 'block'
+        paypalField.style.display = 'none';
+        bitcoinField.style.display = 'none'
+    }
+})
+
+// Step 8: Form validation
 
 
