@@ -181,35 +181,208 @@ formElement.addEventListener('submit', (e) => {
         }
     }
 
+    // Variable Creation
+
+    let nameLabel = nameField.parentElement;
+    let emailLabel = email.parentElement;
+    let ccNumbValueParent = document.getElementById('cc-num').parentElement;
+    let zipParent = document.getElementById('zip').parentElement;
+    let cvvParent = document.getElementById('cvv').parentElement;
+
+    // Name Validation
+
     if ( !nameValidator() ) {
         e.preventDefault();
         console.log('Name Validator does not approve');
+        // Form Validation Error Message 
+        nameLabel.className = 'not-valid';
+        nameLabel.classList.remove('valid');
+        nameLabel.lastElementChild.style.display = 'block';
+    } 
+    if ( nameValidator() ) {
+        nameLabel.className = 'valid';
+        nameLabel.classList.remove('not-valid');
+        nameLabel.lastElementChild.style.display = 'none';
     }
+
+    // Email Validation
+
     if ( !emailValidator() ) {
         e.preventDefault();
         console.log('Email validator does not approve');
+        // Form Validation Error Message
+        emailLabel.className = 'not-valid';
+        emailLabel.classList.remove('valid');
+        emailLabel.lastElementChild.style.display = 'block';
     }
+    if ( emailValidator() ) {
+        emailLabel.className = 'valid';
+        emailLabel.classList.remove('not-valid');
+        emailLabel.lastElementChild.style.display = 'none';
+    }
+
+    // Activities Validation
+
     if ( !activitiesValidator() ) {
         e.preventDefault();
         console.log('Activities validator does not approve');
-        
+        // Form Validation Error Message
+        activitiesFieldSet.className = 'not-valid';
+        activitiesFieldSet.classList.remove('valid');
+        activitiesFieldSet.lastElementChild.style.display = 'block';
     }
+
+    // Credit Card Payment Validation
+
     if ( paymentOptions[1].selected ) {
         //console.log('Credit Card fires baby!') -> testing phrase
+
+        // Card Number Validation
 
         if ( !cardNumberValidator() ) {
             e.preventDefault();
             console.log('Card Number Validator does not approve');
+            // Form Validation Error Message
+            ccNumbValueParent.className = 'not-valid';
+            ccNumbValueParent.classList.remove('valid');
+            ccNumbValueParent.lastElementChild.style.display = 'block'; 
         }
+        if ( cardNumberValidator() ) {
+            ccNumbValueParent.className = 'valid';
+            ccNumbValueParent.classList.remove('not-valid');
+            ccNumbValueParent.lastElementChild.style.display = 'none';
+        }
+
+        // Zipcode Validation
+
         if ( !zipcodeValidator() ) {
             e.preventDefault();
             console.log('Zip Code Validator does not approve');
+            // Form Validation Error Message
+            zipParent.className = 'not-valid';
+            zipParent.classList.remove('valid');
+            zipParent.lastElementChild.style.display = 'block';
         }
+        if ( zipcodeValidator() ) {
+            zipParent.className = 'valid';
+            zipParent.classList.remove('not-valid');
+            zipParent.lastElementChild.style.display = 'none';
+        }
+
+        // CVV Validation
+
         if ( !cvvValidator() ) {
             e.preventDefault();
             console.log('CVV Validator does not approve');
+            // Form Validation Error Message
+            cvvParent.className = 'not-valid';
+            cvvParent.classList.remove('valid');
+            cvvParent.lastElementChild.style.display = 'block';
+        }
+        if ( cvvValidator() ) {
+            cvvParent.className = 'valid';
+            cvvParent.classList.remove('not-valid');
+            cvvParent.lastElementChild.style.display = 'none';
         }
     } 
 });
 
 // Step 9: Accessibility 
+
+// Creating variables for each of the checkbox inputs, so that I can use focus and blur event listeners on each one.
+// 
+
+let activitiesInputs0 = document.querySelectorAll('#activities-box input')[0];
+let activitiesInputs1 = document.querySelectorAll('#activities-box input')[1];
+let activitiesInputs2 = document.querySelectorAll('#activities-box input')[2];
+let activitiesInputs3 = document.querySelectorAll('#activities-box input')[3];
+let activitiesInputs4 = document.querySelectorAll('#activities-box input')[4];
+let activitiesInputs5 = document.querySelectorAll('#activities-box input')[5];
+let activitiesInputs6 = document.querySelectorAll('#activities-box input')[6];
+
+console.log(activitiesInputs0);
+
+function focuscheckboxLabel(element) {
+    let focusparentElement = element.parentElement;
+    focusparentElement.className = 'focus';
+    return focusparentElement
+}
+
+function blurcheckboxLabel(element) {
+    let blurparentElement = element.parentElement;
+    blurparentElement.classList.remove('focus');
+    return blurparentElement
+
+}
+
+// Event Handlers - Activity 0
+
+activitiesInputs0.addEventListener('focus', (e) => {
+    focuscheckboxLabel(e.target);
+});
+
+activitiesInputs0.addEventListener('blur', (e) => {
+    blurcheckboxLabel(e.target);
+});
+
+// Event Handlers - Activity 1
+
+activitiesInputs1.addEventListener('focus', (e) => {
+    focuscheckboxLabel(e.target);
+});
+
+activitiesInputs1.addEventListener('blur', (e) => {
+    blurcheckboxLabel(e.target);
+});
+
+// Event Handlers - Activity 2
+
+activitiesInputs2.addEventListener('focus', (e) => {
+    focuscheckboxLabel(e.target);
+});
+
+activitiesInputs2.addEventListener('blur', (e) => {
+    blurcheckboxLabel(e.target);
+});
+
+// Event Handlers - Activity 3
+
+activitiesInputs3.addEventListener('focus', (e) => {
+    focuscheckboxLabel(e.target);
+});
+
+activitiesInputs3.addEventListener('blur', (e) => {
+    blurcheckboxLabel(e.target);
+});
+
+// Event Handlers - Activity 4
+
+activitiesInputs4.addEventListener('focus', (e) => {
+    focuscheckboxLabel(e.target);
+});
+
+activitiesInputs4.addEventListener('blur', (e) => {
+    blurcheckboxLabel(e.target);
+});
+
+// Event Handlers - Activity 5
+
+activitiesInputs5.addEventListener('focus', (e) => {
+    focuscheckboxLabel(e.target);
+});
+
+activitiesInputs5.addEventListener('blur', (e) => {
+    blurcheckboxLabel(e.target);
+});
+
+// Event Handlers - Activity 6
+
+activitiesInputs6.addEventListener('focus', (e) => {
+    focuscheckboxLabel(e.target);
+});
+
+activitiesInputs6.addEventListener('blur', (e) => {
+    blurcheckboxLabel(e.target);
+});
+
+//
