@@ -1,14 +1,15 @@
 // Test Code to ensure everything is set up correctly.
 // console.log("Test!");
 
-// Step 3: The Name Field. This code will cause cursor to automatically appear in the first text field.
+// Step 3: The Name Field. This code will cause the cursor to automatically appear in the first text field.
 // The .focus() method will be used to achieve this. 
 
 const nameField = document.getElementById('name');
 nameField.focus();
 
-// Step 4: The Job Role Section. I will hide the Other Job Role input text by using style.display = 'none'.
-// I will then use a 'Change' event listener to pick up on the moments when a person selects 
+// Step 4: The Job Role Section. I will hide the "Other" Job Role input text by using style.display = 'none'.
+// I will then use a 'Change' event listener to pick up on the moments when a person selects the Other option. If the value of the event target
+// is "Other", the input text field will appear. If not, it will not be visible. 
 
 let otherJobRoleStatus = document.getElementById('other-job-role');
 otherJobRoleStatus.style.display = 'none';
@@ -23,7 +24,13 @@ jobRoleField.addEventListener('change', (e) => {
     }
 })
 
-// Step 5: 
+// Step 5: I will first disable the color element by assigning it to a variable and 
+// setting its style.display to none. I will then program the design element to listen for changes.
+// The different colors of shirts will be collected into a single array. Within the event listener, I will
+// display the color element and then create a loop to iterate through the array of colors. If the 
+// event target is = to js puns, the default option selected will be set to the second option in the array ([1]).
+// I then use a for loop to select the colors that will be displayed. I then use a similar structure for the
+// other theme and colors. 
 
 let disableColor = document.getElementById('color');
 disableColor.style.display = 'none';
@@ -58,7 +65,11 @@ shirtDesignSelect.addEventListener('change', (e) => {
     }
 })
 
-// Step 6: Register for Activities
+// Step 6: Register for Activities - I created two variables that are assigned the fieldset element for activities
+// and the specific activity checkbox inputs that are found within it. Within the event listener I programmed, I created
+// two variables that set the total cost to 0 and select the element that displays the cost on the webpage. Then,
+// I used a for loop to determine if the checkbox was checked. If it was, I added the cost of the activity to total cost. 
+// Finally, I used innerHTML to change the displayed total cost of the activities. 
 
 let activitiesFieldSet = document.querySelector('.activities');
 let activitiesCheckboxes = document.querySelectorAll('.activities input');
@@ -66,8 +77,6 @@ let activitiesCheckboxes = document.querySelectorAll('.activities input');
 // Testing Variables:
 // console.log(activitiesFieldSet);
 // console.log(activitiesCheckboxes);
-
-// Variable for Step 8 established here: 
 
 activitiesFieldSet.addEventListener('change', (e) => {
 
@@ -92,16 +101,23 @@ activitiesFieldSet.addEventListener('change', (e) => {
 
 let creditCardField = document.getElementById('credit-card');
 
+// I hid the paypal and bitcoin elements. 
+
 let paypalField = document.getElementById('paypal');
 paypalField.style.display = 'none';
 
 let bitcoinField = document.getElementById('bitcoin');
 bitcoinField.style.display = 'none';
 
+// The following code sets Credit Card payments as the default option. 
+
 let paymentOptions = document.querySelectorAll('#payment option');
 paymentOptions[1].selected = 'true';
 
 let paymentSelector = document.getElementById('payment');
+
+// I used this event listener to pick up on changes to the payment method and hid or displayed the different options depending
+// on what was selected. 
 
 paymentSelector.addEventListener('change', (e) => {
     if ( e.target.value == 'paypal' ) {
@@ -119,7 +135,12 @@ paymentSelector.addEventListener('change', (e) => {
     }
 })
 
-// Step 8: Form validation
+// Step 8: Form validation - I created a series of functions that will evaluate to true or false depending on if the 
+// information written in their input fields is valid or invalid. These functions were then called inside the 'submit' event
+// listener. Part of the code for Step 9 was also included within the event listener. I used a for loop to count the number of 
+// checked boxes were present for the activities validator function. If the validator functions returned true, class names of 
+// 'valid' were added to them and the error hints were hidden. If they returned false, 'not-valid' class names were added and 
+// error hints were displayed. 
 
 let formElement = document.querySelector('form');
 
@@ -231,6 +252,11 @@ formElement.addEventListener('submit', (e) => {
         activitiesFieldSet.classList.remove('valid');
         activitiesFieldSet.lastElementChild.style.display = 'block';
     }
+    if ( activitiesValidator() ) {
+        activitiesFieldSet.className = 'valid';
+        activitiesFieldSet.classList.remove('not-valid');
+        activitiesFieldSet.lastElementChild.style.display = 'none';
+    }
 
     // Credit Card Payment Validation
 
@@ -301,6 +327,8 @@ let activitiesInputs5 = document.querySelectorAll('#activities-box input')[5];
 let activitiesInputs6 = document.querySelectorAll('#activities-box input')[6];
 
 console.log(activitiesInputs0);
+
+// These functions either add or remove the focus class from the selected elements. 
 
 function focuscheckboxLabel(element) {
     let focusparentElement = element.parentElement;
