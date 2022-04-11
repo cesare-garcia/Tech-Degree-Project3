@@ -250,12 +250,12 @@ formElement.addEventListener('submit', (e) => {
         e.preventDefault();
         console.log('Activities validator does not approve');
         // Form Validation Error Message
-        activitiesFieldSet.className = 'not-valid';
+        activitiesFieldSet.classList.add('not-valid');
         activitiesFieldSet.classList.remove('valid');
         activitiesFieldSet.lastElementChild.style.display = 'block';
     }
     if ( activitiesValidator() ) {
-        activitiesFieldSet.className = 'valid';
+        activitiesFieldSet.classList.add('valid');
         activitiesFieldSet.classList.remove('not-valid');
         activitiesFieldSet.lastElementChild.style.display = 'none';
     }
