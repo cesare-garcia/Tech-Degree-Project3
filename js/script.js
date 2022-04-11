@@ -34,6 +34,9 @@ jobRoleField.addEventListener('change', (e) => {
 // I then use a for loop to select the colors that will be displayed. I then use a similar structure for the
 // other theme and colors. 
 
+let disableColorDiv = document.getElementById('shirt-colors');
+disableColorDiv.style.display = 'none';
+
 let disableColor = document.getElementById('color');
 disableColor.style.display = 'none';
 
@@ -43,6 +46,7 @@ let shirtColorOptions = document.querySelectorAll('#color option');
 
 console.log(shirtDesignSelect);
 shirtDesignSelect.addEventListener('change', (e) => {
+    disableColorDiv.style.display = 'block';
     disableColor.style.display = 'block';
     if ( e.target.value == 'js puns') {
         //console.log(shirtColorOptions[1])
